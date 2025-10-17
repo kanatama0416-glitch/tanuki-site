@@ -7,12 +7,12 @@
   <meta name="description" content="ポートフォリオ / ギャラリー / イベント情報 / お問い合わせ">
 
   <style>
+    /* ============ Base ============ */
     :root{
       --bg: #ffffff;
       --fg: #121212;
       --muted:#6b7280;
       --line:#e5e7eb;
-      --accent:#111827;
       --radius: 16px;
       --space: clamp(16px, 2vw, 28px);
       --maxw: 1120px;
@@ -36,6 +36,7 @@
     p{margin:0 0 12px;}
     .muted{color:var(--muted)}
 
+    /* ============ Header ============ */
     header{
       position:sticky; top:0; z-index:10;
       background:rgba(255,255,255,0.8);
@@ -54,6 +55,7 @@
       nav{flex-direction:column; height:auto; padding:10px 0;}
     }
 
+    /* ============ Hero ============ */
     .hero{
       position:relative; height:90vh;
       display:flex; align-items:center; justify-content:center;
@@ -74,6 +76,7 @@
     }
     .btn:hover{background:#fff; color:#000;}
 
+    /* ============ Sections ============ */
     section{padding:80px 0;}
     .grid{display:grid; gap:20px;}
     .grid.cols-3{grid-template-columns:repeat(auto-fit,minmax(280px,1fr));}
@@ -88,6 +91,67 @@
     .card img{aspect-ratio:16/9; object-fit:cover;}
     .card-body{padding:16px;}
 
+    /* ============ Event Cards ============ */
+    .event-card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      max-width: 1000px;
+      margin: 0 auto 24px;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      padding: 28px 40px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .event-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
+    }
+    .event-info { flex: 1; }
+    .event-info .date {
+      font-weight: 600;
+      color: #222;
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+    .event-info h3 {
+      font-size: 1.4rem;
+      margin: 6px 0 10px;
+      font-weight: 700;
+    }
+    .event-info p {
+      margin: 4px 0;
+      color: #555;
+    }
+    .event-buttons {
+      display: flex;
+      gap: 14px;
+      flex-shrink: 0;
+    }
+    .btn-outline {
+      border: 1.5px solid #0b0c0f;
+      color: #0b0c0f;
+      background: #fff;
+    }
+    .btn-dark {
+      background: #0b0c0f;
+      color: #fff;
+      border: 1.5px solid #0b0c0f;
+    }
+    @media (max-width: 768px) {
+      .event-card {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+      }
+      .event-buttons {
+        margin-top: 12px;
+      }
+    }
+
+    /* ============ Gallery ============ */
     .gallery-grid{
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
@@ -101,23 +165,18 @@
       transform:scale(1.05); filter:brightness(0.8);
     }
 
-    footer{
-      border-top:1px solid var(--line);
-      padding:30px 0; color:var(--muted);
-      text-align:center;
-    }
-
-    /* ===== Contact Section ===== */
+    /* ============ Contact ============ */
     .contact-container {
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 40px;
-      flex-wrap: nowrap;
-      overflow-x: auto;
-      padding: 10px;
+      flex-wrap: wrap;
     }
-
+    .contact-item {
+      text-align: center;
+      flex: 0 1 120px;
+    }
     .icon-circle {
       width: 100px;
       height: 100px;
@@ -130,13 +189,11 @@
       margin: 0 auto 10px;
       overflow: hidden;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      flex-shrink: 0;
     }
     .icon-circle:hover {
       transform: scale(1.08);
       box-shadow: 0 10px 28px rgba(0,0,0,0.2);
     }
-
     .contact-icon {
       width: 85%;
       height: 85%;
@@ -146,36 +203,50 @@
     .icon-circle:hover .contact-icon {
       transform: scale(1.05);
     }
-
     .contact-text {
-      text-align: center;
       font-size: 16px;
       color: var(--fg);
       font-weight: 500;
     }
-
     @media (max-width: 600px) {
-      .icon-circle { width: 80px; height: 80px; }
-      .contact-text { font-size: 14px; }
+      .contact-container {
+        justify-content: center;
+        gap: 24px;
+      }
+      .icon-circle {
+        width: 80px;
+        height: 80px;
+      }
+      .contact-text {
+        font-size: 14px;
+      }
+    }
+
+    footer{
+      border-top:1px solid var(--line);
+      padding:30px 0; color:var(--muted);
+      text-align:center;
     }
   </style>
 </head>
 
 <body>
+  <!-- Header -->
   <header>
     <div class="container">
       <nav>
         <div class="brand"><strong>野眺ノ怪</strong></div>
         <div class="nav-links">
           <a href="#portfolio">Portfolio</a>
-          <a href="#about">About</a>
           <a href="#gallery">Gallery</a>
+          <a href="#events">Events</a>
           <a href="#contact">Contact</a>
         </div>
       </nav>
     </div>
   </header>
 
+  <!-- Hero -->
   <section class="hero">
     <div>
       <h1>野眺ノ怪</h1>
@@ -188,56 +259,82 @@
   </section>
 
   <main class="container">
+
+    <!-- Portfolio -->
     <section id="portfolio">
       <h2>Portfolio</h2>
       <div class="grid cols-3">
-        <article class="card">
-          <img src="tanuki/image/work1.jpg" alt="作品1">
-        </article>
-        <article class="card">
-          <img src="tanuki/image/work2.jpg" alt="作品2">
-        </article>
-        <article class="card">
-          <img src="tanuki/image/work3.jpg" alt="作品3">
-        </article>
+        <article class="card"><img src="tanuki/image/work1.jpg" alt="作品1"></article>
+        <article class="card"><img src="tanuki/image/work2.jpg" alt="作品2"></article>
+        <article class="card"><img src="tanuki/image/work3.jpg" alt="作品3"></article>
       </div>
     </section>
 
+    <!-- Gallery -->
     <section id="gallery">
       <h2>Gallery</h2>
       <div class="gallery-grid">
-        <div class="gallery-item"><img src="tanuki/image/work1.jpg" alt=""></div>
-        <div class="gallery-item"><img src="tanuki/image/work2.jpg" alt=""></div>
-        <div class="gallery-item"><img src="tanuki/image/work3.jpg" alt=""></div>
-        <div class="gallery-item"><img src="tanuki/image/work4.jpg" alt=""></div>
+        <div class="gallery-item"><img src="tanuki/image/work4.jpg" alt="作品4"></div>
+        <div class="gallery-item"><img src="tanuki/image/work5.jpg" alt="作品5"></div>
+        <div class="gallery-item"><img src="tanuki/image/work6.jpg" alt="作品6"></div>
       </div>
     </section>
 
+    <!-- Events -->
+    <section id="events">
+      <h2>イベント出店情報</h2>
+
+      <div class="event-card">
+        <div class="event-info">
+          <p class="date">2025年9月6日（土）～9月7日（日）</p>
+          <h3>東京ハンドメイドマルシェ 2025 秋</h3>
+          <p>📍 東京ドームシティ プリズムホール</p>
+          <p>🕒 10:00～17:00</p>
+        </div>
+        <div class="event-buttons">
+          <a href="https://maps.google.com/?q=東京ドームシティ+プリズムホール" target="_blank" class="btn btn-outline">Map</a>
+          <a href="#" class="btn btn-dark">詳細</a>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <div class="event-info">
+          <p class="date">2025年9月20日（土）～9月21日（日）</p>
+          <h3>TOKYOハンドメイド祭 vol.09</h3>
+          <p>📍 東京都立産業貿易センター 浜松町館</p>
+          <p>🕒 12:00～17:30 / 11:00～16:30</p>
+        </div>
+        <div class="event-buttons">
+          <a href="https://maps.google.com/?q=東京都立産業貿易センター+浜松町館" target="_blank" class="btn btn-outline">Map</a>
+          <a href="#" class="btn btn-dark">詳細</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
     <section id="contact">
       <h2>お問い合わせ</h2>
       <p class="muted" style="margin-bottom: 24px;">SNSまたはメールよりご連絡ください。</p>
 
       <div class="contact-container">
         <div class="contact-item">
-          <a href="https://www.facebook.com/yourpage" target="_blank" class="contact-link">
+          <a href="https://www.facebook.com/yourpage" target="_blank">
             <div class="icon-circle">
               <img src="tanuki/image/facebook.jpg" alt="Facebookアイコン" class="contact-icon">
             </div>
           </a>
           <p class="contact-text">@yourpage</p>
         </div>
-
         <div class="contact-item">
-          <a href="https://www.instagram.com/youraccount" target="_blank" class="contact-link">
+          <a href="https://www.instagram.com/youraccount" target="_blank">
             <div class="icon-circle">
               <img src="tanuki/image/instagram.jpg" alt="Instagramアイコン" class="contact-icon">
             </div>
           </a>
           <p class="contact-text">@youraccount</p>
         </div>
-
         <div class="contact-item">
-          <a href="mailto:you@example.com" class="contact-link">
+          <a href="mailto:you@example.com">
             <div class="icon-circle">
               <img src="tanuki/image/mail.jpg" alt="メールアイコン" class="contact-icon">
             </div>
@@ -246,6 +343,7 @@
         </div>
       </div>
     </section>
+
   </main>
 
   <footer>
