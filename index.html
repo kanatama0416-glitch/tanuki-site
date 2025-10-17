@@ -221,6 +221,63 @@ section {
   transform: scale(1.02);
 }
 
+/* カードデザイン統一 */
+#past-events .event-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto 24px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  padding: 28px 40px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+#past-events .event-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
+}
+#past-events .event-info {
+  flex: 1;
+}
+#past-events .event-info .date {
+  font-weight: 600;
+  color: #222;
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+#past-events .event-info h3 {
+  font-size: 1.5rem;
+  margin: 6px 0 10px;
+  font-weight: 700;
+}
+#past-events .event-info p {
+  margin: 4px 0;
+  color: #555;
+}
+#past-events .event-buttons {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* スマホ対応 */
+@media (max-width: 768px) {
+  #past-events .event-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+  }
+  #past-events .event-buttons {
+    margin-top: 12px;
+  }
+}
+
+
 
 /* ============ Contact ============ */
 #contact {
@@ -460,11 +517,15 @@ section {
   </div>
 </div>
   </section>
-  <!-- 過去イベント -->
+
+  
+<!-- 過去イベント -->
 <section id="past-events">
-  <h3 style="cursor:pointer;" onclick="togglePastEvents()">▶ 過去のイベントを表示</h3>
+  <h3 onclick="togglePastEvents()">▶ 過去のイベントを表示</h3>
+
   <div id="past-event-list" style="display:none; margin-top:20px;">
 
+    <!-- 秋の陶芸フェスタ -->
     <div class="event-card">
       <div class="event-info">
         <p class="date">2024年10月5日（土）～10月6日（日）</p>
@@ -473,10 +534,12 @@ section {
         <p>🕒 10:00～17:00</p>
       </div>
       <div class="event-buttons">
-        <a href="#" class="btn btn-outline">詳細</a>
+        <a href="https://maps.google.com?q=名古屋ドーム" target="_blank" class="btn-outline">Google Map</a>
+        <a href="#" class="btn-dark">詳細ページ</a>
       </div>
     </div>
 
+    <!-- クラフトマーケット -->
     <div class="event-card">
       <div class="event-info">
         <p class="date">2024年6月15日（土）～6月16日（日）</p>
@@ -485,12 +548,14 @@ section {
         <p>🕒 11:00～18:00</p>
       </div>
       <div class="event-buttons">
-        <a href="#" class="btn btn-outline">詳細</a>
+        <a href="https://maps.google.com?q=大阪ATCホール" target="_blank" class="btn-outline">Google Map</a>
+        <a href="#" class="btn-dark">詳細ページ</a>
       </div>
     </div>
 
   </div>
 </section>
+
 
 
 <section id="contact">
@@ -570,6 +635,7 @@ function togglePastEvents() {
           
 </body>
 </html>
+
 
 
 
