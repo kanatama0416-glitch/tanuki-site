@@ -68,7 +68,7 @@
       content:"";
       position:absolute;
       inset:0;
-      background:url("tanuki/image/main.jpg") center center / cover no-repeat;
+      background:url("image/main.jpg") center center / cover no-repeat;
       filter:brightness(0.6);
       z-index:-1;
     }
@@ -91,23 +91,39 @@
     /* ============ About ============ */
 .about-wrap {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
+  grid-template-columns: 1.1fr 0.9fr; /* 左右バランス */
   gap: 30px;
   align-items: center;
 }
-.about-text p { margin-bottom: 14px; line-height: 1.8; }
+
+.about-text p {
+  margin-bottom: 14px;
+  line-height: 1.8;
+}
+
 .about-photo img {
-  width: 100%; max-width: 400px;
+  width: 100%;
+  max-width: 400px;
   border-radius: var(--radius);
   object-fit: cover;
   border: 1px solid var(--line);
   box-shadow: 0 4px 20px rgba(0,0,0,0.1);
 }
+
+/* スマホでは縦並びにする */
 @media (max-width: 800px) {
-  .about-wrap { grid-template-columns: 1fr; }
-  .about-photo { order: -1; text-align: center; }
-  .about-photo img { max-width: 300px; }
+  .about-wrap {
+    grid-template-columns: 1fr;
+  }
+  .about-photo {
+    order: -1; /* 写真を上に表示 */
+    text-align: center;
+  }
+  .about-photo img {
+    max-width: 300px;
+  }
 }
+
 
     /* ============ Portfolio ============ */
     section{padding:80px 0;}
@@ -142,48 +158,240 @@
     }
     textarea{min-height:120px;}
     .center{text-align:center; margin-top:16px;}
+
     footer{
       border-top:1px solid var(--line);
       padding:30px 0; color:var(--muted);
       text-align:center;
     }
+ 
+  
+      /* ============ Gallery (Grid & Lightbox) ============ */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+}
 
-    /* ============ Gallery ============ */
-.gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
-.gallery-item { position: relative; overflow: hidden; border-radius: 10px; cursor: pointer; }
-.gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease, filter 0.4s ease; }
-.gallery-item:hover img { transform: scale(1.1); filter: brightness(0.7); }
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  cursor: pointer;
+}
 
-.lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); justify-content: center; align-items: center; z-index: 1000; }
-.lightbox-img { max-width: 90%; max-height: 90%; border-radius: 10px; box-shadow: 0 4px 30px rgba(0,0,0,0.6); }
-.lightbox.show { display: flex; }
-.lightbox .close { position: absolute; top: 30px; right: 40px; font-size: 40px; color: white; cursor: pointer; }
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
 
-.event-card { display: flex; justify-content: space-between; align-items: center; gap: 24px; width: 100%; max-width: 1100px; margin: 0 auto 24px; background: #fff; border-radius: 16px; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08); padding: 28px 40px; transition: transform 0.3s ease, box-shadow 0.3s ease; }
-.event-card:hover { transform: translateY(-3px); box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12); }
-.event-info { flex: 1; }
-.event-info .date { font-weight: 600; color: #222; font-size: 1rem; margin-bottom: 4px; }
-.event-info h3 { font-size: 1.5rem; margin: 6px 0 10px; font-weight: 700; }
-.event-info p { margin: 4px 0; color: #555; }
-.event-buttons { display: flex; gap: 14px; align-items: center; flex-shrink: 0; }
+/* ホバー時のズームと暗くする効果 */
+.gallery-item:hover img {
+  transform: scale(1.1);
+  filter: brightness(0.7);
+}
 
-.btn { display: inline-block; padding: 10px 24px; border-radius: 999px; font-size: 0.95rem; text-decoration: none; transition: transform 0.2s ease; }
-.btn:hover { transform: scale(1.05); }
-.btn-outline { border: 1.5px solid #0b0c0f; color: #0b0c0f; background: #fff; }
-.btn-dark { background: #0b0c0f; color: #fff; border: 1.5px solid #0b0c0f; }
-@media (max-width: 768px) { .event-card { flex-direction: column; align-items: flex-start; padding: 20px; } .event-buttons { margin-top: 12px; } }
+/* Lightbox（ポップアップ拡大） */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
 
-.icon-circle { width: 120px; height: 120px; border-radius: 50%; background: #fff; box-shadow: 0 8px 22px rgba(0, 0, 0, 0.15); display: flex; align-items: center; justify-content: center; margin: 0 auto 14px; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; }
-.icon-circle:hover { transform: scale(1.08); box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2); }
-.contact-icon { width: 120%; height: 120%; object-fit: contain; transition: transform 0.3s ease; }
-.icon-circle:hover .contact-icon { transform: scale(1.05); }
-.contact-container { display: flex; justify-content: center; align-items: center; gap: 80px; flex-wrap: wrap; margin-top: 50px; }
-.contact-text { font-size: 18px; color: var(--fg); margin: 0; font-weight: 500; }
-@media (max-width: 700px) { .icon-circle { width: 90px; height: 90px; } .contact-icon { width: 85%; height: 85%; } .contact-text { font-size: 16px; } }
-  </style>
+.lightbox-img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+  box-shadow: 0 4px 30px rgba(0,0,0,0.6);
+}
+
+.lightbox.show {
+  display: flex;
+}
+
+.lightbox .close {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
+}
+
+/* ===== イベントカード（左右レイアウト） ===== */
+.event-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto 24px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  padding: 28px 40px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.event-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
+}
+
+/* 左側：テキスト */
+.event-info {
+  flex: 1;
+}
+
+.event-info .date {
+  font-weight: 600;
+  color: #222;
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+
+.event-info h3 {
+  font-size: 1.5rem;
+  margin: 6px 0 10px;
+  font-weight: 700;
+}
+
+.event-info p {
+  margin: 4px 0;
+  color: #555;
+}
+
+/* 右側：ボタン配置 */
+.event-buttons {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* ===== ボタンデザイン（以前のまま） ===== */
+.btn {
+  display: inline-block;
+  padding: 10px 24px;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+/* 外枠タイプ（Google Map） */
+.btn-outline {
+  border: 1.5px solid #0b0c0f;
+  color: #0b0c0f;
+  background: #fff;
+}
+
+/* 濃色背景タイプ（詳細ページ） */
+.btn-dark {
+  background: #0b0c0f;
+  color: #fff;
+  border: 1.5px solid #0b0c0f;
+}
+
+/* モバイル対応 */
+@media (max-width: 768px) {
+  .event-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+  }
+
+  .event-buttons {
+    margin-top: 12px;
+  }
+
+  }
+
+
+
+/* ===== Contact (Circle Design, Subtle Zoom Only) ===== */
+.icon-circle {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 14px;
+  overflow: hidden; /* ✅ はみ出し防止 */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.icon-circle:hover {
+  transform: scale(1.08);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
+}
+
+.contact-icon {
+  width: 120%;
+  height: 120%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+/* hover時に中のアイコンも少し大きく */
+.icon-circle:hover .contact-icon {
+  transform: scale(1.05);
+}
+
+/* アイコン全体の配置 */
+.contact-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 80px;
+  flex-wrap: wrap;
+  margin-top: 50px;
+}
+
+/* テキスト */
+.contact-text {
+  font-size: 18px;
+  color: var(--fg);
+  margin: 0;
+  font-weight: 500;
+}
+
+/* スマホ対応 */
+@media (max-width: 700px) {
+  .icon-circle {
+    width: 90px;
+    height: 90px;
+  }
+  .contact-icon {
+    width: 85%;
+    height: 85%;
+  }
+  .contact-text {
+    font-size: 16px;
+  }
+}
+
+
+ </style>
+
 </head>
 
 <body>
+  <!-- Header -->
   <header>
     <div class="container">
       <nav>
@@ -218,7 +426,7 @@
       <p class="muted">代表的なシリーズから作品を抜粋。</p>
       <div class="grid cols-3">
         <article class="card">
-          <img src="tanuki/image/work1.jpg" alt="作品1">
+          <img src="image/work1.jpg" alt="作品1">
           <div class="card-body">
             <div class="pill">器 / Stoneware</div>
             <h3>縄文土器ver令和 – 皿 24cm</h3>
@@ -226,15 +434,16 @@
           </div>
         </article>
         <article class="card">
-          <img src="tanuki/image/work2.jpg" alt="作品2">
+          <img src="image/work2.jpg" alt="作品2">
           <div class="card-body">
+          
             <div class="pill">花器 / Vase</div>
             <h3>複数生命体 – 自由利用</h3>
             <p class="muted">複数の生命体がひとつに融合したら、一つの生命体になるのか？意識の所在は。</p>
           </div>
         </article>
         <article class="card">
-          <img src="tanuki/image/work3.jpg" alt="作品3">
+          <img src="image/work3.jpg" alt="作品3">
           <div class="card-body">
             <div class="pill">オブジェ / Object</div>
             <h3>蛇地獄 – 自由利用</h3>
@@ -246,38 +455,41 @@
 
     <!-- About -->
     <section id="about">
-      <h2>About -野眺ノ怪-</h2>
-      <div class="about-wrap">
-        <div class="about-text">
+  <h2>About  -野眺ノ怪-</h2>
+  <div class="about-wrap">
+    <div class="about-text">
           <p>野眺ノ怪。本当はたぬきですが、人間のふりをして生きています。</p>
           <p>ぽんぽこしながら、土をこねこねしていろいろなものを作っています。</p>
-        </div>
-        <figure class="about-photo">
-          <img src="tanuki/image/profile.jpg" alt="作家の顔写真">
-        </figure>
-      </div>
+    </div>
+    <figure class="about-photo">
+      <img src="image/profile.jpg" alt="作家の顔写真">
+    </figure>
+  </div>
     </section>
 
     <!-- Gallery -->
-    <section id="gallery">
-      <h2>Gallery</h2>
-      <p class="muted" style="margin-bottom:14px">クリックをすると拡大表示されます。</p>
-      <div class="gallery-grid">
-        <div class="gallery-item"><img src="tanuki/image/work1.jpg" alt="作品1"></div>
-        <div class="gallery-item"><img src="tanuki/image/work2.jpg" alt="作品2"></div>
-        <div class="gallery-item"><img src="tanuki/image/work3.jpg" alt="作品3"></div>
-        <div class="gallery-item"><img src="tanuki/image/work4.jpg" alt="作品4"></div>
-        <div class="gallery-item"><img src="tanuki/image/work5.jpg" alt="作品5"></div>
-        <div class="gallery-item"><img src="tanuki/image/work6.jpg" alt="作品6"></div>
-        <div class="gallery-item"><img src="tanuki/image/work7.jpg" alt="作品7"></div>
-        <div class="gallery-item"><img src="tanuki/image/work8.jpg" alt="作品8"></div>
-      </div>
-    </section>
+   <section id="gallery">
+  <h2>Gallery</h2>
+  <p class="muted" style="margin-bottom:14px">
+    クリックをすると拡大表示されます。
+  </p>
 
-    <!-- Events -->
-    <section id="events">
-      <h2>イベント出店情報</h2>
-        <!-- イベント1 -->
+  <div class="gallery-grid">
+    <div class="gallery-item"><img src="image/work1.jpg" alt="作品1"></div>
+    <div class="gallery-item"><img src="image/work2.jpg" alt="作品2"></div>
+    <div class="gallery-item"><img src="image/work3.jpg" alt="作品3"></div>
+    <div class="gallery-item"><img src="image/work4.jpg" alt="作品4"></div>
+    <div class="gallery-item"><img src="image/work5.jpg" alt="作品5"></div>
+    <div class="gallery-item"><img src="image/work6.jpg" alt="作品6"></div>
+    <div class="gallery-item"><img src="image/work7.jpg" alt="作品7"></div>
+    <div class="gallery-item"><img src="image/work8.jpg" alt="作品8"></div>
+  </div>
+
+  <!-- モーダル（拡大プレビュー） -->
+<section id="events">
+  <h2>イベント出店情報</h2>
+
+  <!-- イベント1 -->
   <div class="event-card">
     <div class="event-info">
       <p class="date">2025年9月6日（土）～9月7日（日）</p>
@@ -337,39 +549,47 @@
     </div>
   </div>
 </section>
-    </section>
 
-    <!-- Contact -->
-    <section id="contact">
-      <h2>お問い合わせ</h2>
-      <p class="muted" style="margin-bottom: 24px;">SNSまたはメールよりご連絡ください。</p>
-      <div class="contact-container">
-        <div class="contact-item">
-          <a href="https://www.facebook.com/yourpage" target="_blank" class="contact-link">
-            <div class="icon-circle">
-              <img src="tanuki/image/facebook.jpg" alt="Facebookアイコン" class="contact-icon">
-            </div>
-          </a>
-          <p class="contact-text">@yourpage</p>
+
+
+<!-- Contact -->
+<section id="contact">
+  <h2>お問い合わせ</h2>
+  <p class="muted" style="margin-bottom: 24px;">SNSまたはメールよりご連絡ください。</p>
+
+  <div class="contact-container">
+    <div class="contact-item">
+      <a href="https://www.facebook.com/yourpage" target="_blank" class="contact-link">
+        <div class="icon-circle">
+          <img src="image/facebook.jpg" alt="Facebookアイコン" class="contact-icon">
         </div>
-        <div class="contact-item">
-          <a href="https://www.instagram.com/youraccount" target="_blank" class="contact-link">
-            <div class="icon-circle">
-              <img src="tanuki/image/instagram.jpg" alt="Instagramアイコン" class="contact-icon">
-            </div>
-          </a>
-          <p class="contact-text">@youraccount</p>
+      </a>
+      <p class="contact-text">@yourpage</p>
+    </div>
+
+    <div class="contact-item">
+      <a href="https://www.instagram.com/youraccount" target="_blank" class="contact-link">
+        <div class="icon-circle">
+          <img src="image/instagram.jpg" alt="Instagramアイコン" class="contact-icon">
         </div>
-        <div class="contact-item">
-          <a href="mailto:you@example.com" class="contact-link">
-            <div class="icon-circle">
-              <img src="tanuki/image/mail.jpg" alt="メールアイコン" class="contact-icon">
-            </div>
-          </a>
-          <p class="contact-text">you@example.com</p>
+      </a>
+      <p class="contact-text">@youraccount</p>
+    </div>
+
+    <div class="contact-item">
+      <a href="mailto:you@example.com" class="contact-link">
+        <div class="icon-circle">
+          <img src="image/mail.jpg" alt="メールアイコン" class="contact-icon">
         </div>
-      </div>
-    </section>
+      </a>
+      <p class="contact-text">you@example.com</p>
+    </div>
+  </div>
+</section>
+
+
+
+
   </main>
 
   <footer>
@@ -379,7 +599,29 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
+  
+  
+     <script>
+  // Lightbox（拡大プレビュー）
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.querySelector('.lightbox-img');
+  const closeBtn = document.querySelector('.lightbox .close');
+
+  document.querySelectorAll('.gallery-item img').forEach(img => {
+    img.addEventListener('click', () => {
+      lightboxImg.src = img.src;
+      lightbox.classList.add('show');
+    });
+  });
+
+  closeBtn.addEventListener('click', () => {
+    lightbox.classList.remove('show');
+  });
+
+  lightbox.addEventListener('click', e => {
+    if (e.target === lightbox) lightbox.classList.remove('show');
+  });
+</script>
+
 </body>
 </html>
-
-
