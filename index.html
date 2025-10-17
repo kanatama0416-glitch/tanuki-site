@@ -205,24 +205,36 @@ section {
 }
 
 /* 見出し（過去のイベントを表示） */
+/* ▼過去のイベントを表示ボタン（隠れ防止＆中央整列） */
 #past-events h3 {
   display: inline-block;
   background: #fff;
   font-size: 18px;
   color: var(--muted);
-  margin: 6px 0 0;
-  line-height: 1.3;
-  padding: 4px 12px;
-  border-radius: 6px;
+  margin: 10px 0;                /* 余白をやや広げて干渉を防ぐ */
+  line-height: 1.6;              /* 上下にゆとりを持たせて文字潰れ防止 */
+  padding: 6px 16px;             /* 内側の余白を増やす */
+  border-radius: 8px;
   cursor: pointer;
   transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+  overflow: visible;             /* 文字が隠れないように */
+  position: relative;
+  z-index: 2;                    /* 上に重なる要素に埋もれないように */
 }
+
 #past-events h3:hover {
   color: var(--fg);
   background: var(--line);
   transform: scale(1.02);
 }
 
+/* 念のため、親要素でも文字が切れないように補強 */
+#past-events {
+  overflow: visible !important;
+}
+
+
+    
 /* ===============================
    イベントカード（過去イベント）
    =============================== */
@@ -691,6 +703,7 @@ function togglePastEvents() {
           
 </body>
 </html>
+
 
 
 
