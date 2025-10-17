@@ -195,7 +195,48 @@ section {
 /* ===============================
    過去イベント：左揃えに統一
    =============================== */
-#past-events .event-card {
+/* ===============================
+   過去イベントボタン：丸型を維持
+   =============================== */
+#past-events .event-buttons a,
+#past-events .btn-outline,
+#past-events .btn-dark {
+  display: inline-block;
+  padding: 10px 22px;            /* ボタンの内側余白（現在イベントと統一） */
+  border-radius: 9999px;         /* ← 完全な丸型ボタンに */
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  white-space: nowrap;           /* 長い文字が折れないように */
+}
+
+/* 枠付き白ボタン（Google Map） */
+#past-events .btn-outline {
+  border: 2px solid #0b0c0f;
+  color: #0b0c0f;
+  background: #fff;
+}
+#past-events .btn-outline:hover {
+  background: #0b0c0f;
+  color: #fff;
+}
+
+/* 黒ボタン（詳細ページ） */
+#past-events .btn-dark {
+  background: #0b0c0f;
+  color: #fff;
+  border: 2px solid #0b0c0f;
+}
+#past-events .btn-dark:hover {
+  background: #fff;
+  color: #0b0c0f;
+}
+
+    
+    #past-events .event-card {
   display: flex;
   justify-content: space-between;  /* ボタンを右端に固定 */
   align-items: center;
@@ -612,6 +653,7 @@ function togglePastEvents() {
           
 </body>
 </html>
+
 
 
 
