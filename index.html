@@ -148,33 +148,94 @@
       .event-buttons{margin-top:12px;}
     }
 
-    /* ============ Contact ============ */
-    .contact-container{
-      display:flex;justify-content:center;align-items:center;
-      gap:60px;flex-wrap:wrap;
-    }
-    .contact-item{text-align:center;}
-    .icon-circle{
-      width:100px;height:100px;border-radius:50%;
-      background:#fff;box-shadow:0 8px 22px rgba(0,0,0,0.15);
-      display:flex;align-items:center;justify-content:center;
-      margin:0 auto 10px;overflow:hidden;
-      transition:transform .3s ease,box-shadow .3s ease;
-    }
-    .icon-circle:hover{transform:scale(1.08);box-shadow:0 10px 28px rgba(0,0,0,0.2);}
-    .contact-icon{width:85%;height:85%;object-fit:contain;transition:transform .3s ease;}
-    .icon-circle:hover .contact-icon{transform:scale(1.05);}
-    .contact-text{font-size:16px;color:var(--fg);font-weight:500;}
-    @media(max-width:700px){
-      .contact-container{gap:30px;justify-content:center;}
-      .icon-circle{width:80px;height:80px;}
-      .contact-text{font-size:14px;}
-    }
+html, body {
+  height: auto;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
 
-    footer{
-      border-top:1px solid var(--line);
-      padding:30px 0;color:var(--muted);text-align:center;
-    }
+section {
+  padding: 80px 0;
+}
+@media (max-width: 600px) {
+  section {
+    padding: 60px 0;
+  }
+}
+
+/* ============ Contact ============ */
+#contact {
+  position: relative;
+  background: var(--bg);
+  z-index: 1;
+}
+
+.contact-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+  flex-wrap: wrap;
+  max-width: 900px;
+  margin: 0 auto;
+  padding-bottom: 30px;
+}
+
+.contact-item {
+  text-align: center;
+  flex: 0 1 160px;
+}
+
+.icon-circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.icon-circle:hover {
+  transform: scale(1.08);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
+}
+
+.contact-icon {
+  width: 85%;
+  height: 85%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+.icon-circle:hover .contact-icon {
+  transform: scale(1.05);
+}
+
+.contact-text {
+  font-size: 16px;
+  color: var(--fg);
+  font-weight: 500;
+  word-break: break-all;
+}
+
+@media (max-width: 700px) {
+  .contact-container {
+    gap: 30px;
+    justify-content: center;
+    max-width: 95%;
+  }
+  .icon-circle {
+    width: 80px;
+    height: 80px;
+  }
+  .contact-text {
+    font-size: 14px;
+  }
+}
+
   </style>
 </head>
 
@@ -307,3 +368,40 @@
       </div>
       <div class="event-buttons">
         <a href="https://maps.google.com/?q=駒沢
+
+<section id="contact">
+  <h2>お問い合わせ</h2>
+  <p class="muted" style="margin-bottom: 24px;">SNSまたはメールよりご連絡ください。</p>
+
+  <div class="contact-container">
+    <div class="contact-item">
+      <a href="https://www.facebook.com/yourpage" target="_blank">
+        <div class="icon-circle">
+          <img src="tanuki/image/facebook.jpg" alt="Facebookアイコン" class="contact-icon">
+        </div>
+      </a>
+      <p class="contact-text">@yourpage</p>
+    </div>
+
+    <div class="contact-item">
+      <a href="https://www.instagram.com/youraccount" target="_blank">
+        <div class="icon-circle">
+          <img src="tanuki/image/instagram.jpg" alt="Instagramアイコン" class="contact-icon">
+        </div>
+      </a>
+      <p class="contact-text">@youraccount</p>
+    </div>
+
+    <div class="contact-item">
+      <a href="mailto:you@example.com">
+        <div class="icon-circle">
+          <img src="tanuki/image/mail.jpg" alt="メールアイコン" class="contact-icon">
+        </div>
+      </a>
+      <p class="contact-text">you@example.com</p>
+    </div>
+  </div>
+</section>
+          
+</body>
+</html>
