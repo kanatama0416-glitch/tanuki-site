@@ -134,7 +134,6 @@
   }
 }
 
-
 .gallery-item {
   position: relative;
   aspect-ratio: 1 / 1; /* ✅ 正方形を維持 */
@@ -165,8 +164,40 @@
     border-radius: 4px;
   }
 }
+
 .gallery-grid {
   grid-auto-rows: 1fr;
+}
+
+/* ===============================
+   スマホ用フルスクリーン拡大表示
+   =============================== */
+#fullscreen-viewer {
+  display: none; /* 初期は非表示 */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+#fullscreen-viewer img {
+  max-width: 95vw;
+  max-height: 90vh;
+  border-radius: 8px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+  object-fit: contain;
+}
+
+/* ⚙️ スマホでのみ機能を有効化（PCには影響なし） */
+@media (max-width: 768px) {
+  #fullscreen-viewer {
+    display: none;
+  }
 }
 
 
@@ -541,10 +572,11 @@ section {
     </div>
   </section>
 
-  <!-- Gallery -->
- <section id="gallery">
+<!-- Gallery -->
+<section id="gallery">
   <h2>Gallery</h2>
   <p class="muted" style="margin-bottom:14px">クリックすると拡大表示されます。</p>
+
   <div class="gallery-grid">
     <div class="gallery-item"><img src="tanuki/image/work1.jpg" alt="作品1" class="zoom-img"></div>
     <div class="gallery-item"><img src="tanuki/image/work2.jpg" alt="作品2" class="zoom-img"></div>
@@ -555,7 +587,39 @@ section {
     <div class="gallery-item"><img src="tanuki/image/work7.jpg" alt="作品7" class="zoom-img"></div>
     <div class="gallery-item"><img src="tanuki/image/work8.jpg" alt="作品8" class="zoom-img"></div>
   </div>
+
+  <!-- スマホ用フルスクリーンオーバーレイ -->
+  <div id="fullscreen-viewer">
+    <img id="fullscreen-image" src="" alt="">
+  </div>
 </section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const images = document.querySelectorAll('.zoom-img');
+  const viewer = document.getElementById('fullscreen-viewer');
+  const viewerImg = document.getElementById('fullscreen-image');
+
+  images.forEach(img => {
+    img.addEventListener('click', function() {
+      // スマホのみ全画面表示を有効化
+      if (window.innerWidth <= 768) {
+        viewerImg.src = this.src;
+        viewerImg.alt = this.alt;
+        viewer.style.display = 'flex';
+        document.body.style.overflow = 'hidden'; // 背景スクロール防止
+      }
+    });
+  });
+
+  // オーバーレイをタップで閉じる
+  viewer.addEventListener('click', function() {
+    viewer.style.display = 'none';
+    document.body.style.overflow = '';
+  });
+});
+</script>
+
 
 
   <!-- Events -->
@@ -718,6 +782,7 @@ function togglePastEvents() {
           
 </body>
 </html>
+
 
 
 
