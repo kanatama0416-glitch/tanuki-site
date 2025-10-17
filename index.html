@@ -3,11 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>My Portfolio</title>
-  <meta name="description" content="ポートフォリオ / 自己紹介 / ギャラリー / イベント出店情報 / お問い合わせ">
+  <title>野眺ノ怪 - Portfolio</title>
+  <meta name="description" content="ポートフォリオ / ギャラリー / イベント情報 / お問い合わせ">
 
   <style>
-    /* ============ Base ============ */
     :root{
       --bg: #ffffff;
       --fg: #121212;
@@ -20,7 +19,7 @@
     }
     @media (prefers-color-scheme: dark){
       :root{
-        --bg:#0b0c0f; --fg:#f3f4f6; --muted:#9ca3af; --line:#1f2937; --accent:#f9fafb;
+        --bg:#0b0c0f; --fg:#f3f4f6; --muted:#9ca3af; --line:#1f2937;
       }
     }
     *{box-sizing:border-box;}
@@ -32,100 +31,49 @@
     a{text-decoration:none; color:inherit}
     img{max-width:100%; height:auto; display:block}
     .container{max-width:var(--maxw); margin:0 auto; padding-inline:var(--space);}
-    h1,h2,h3{letter-spacing:.03em; margin:0;}
+    h1,h2,h3{margin:0; letter-spacing:.03em;}
     h2{font-size: clamp(22px, 2.4vw, 28px); margin-bottom:14px;}
     p{margin:0 0 12px;}
     .muted{color:var(--muted)}
 
-    /* ============ Header ============ */
     header{
       position:sticky; top:0; z-index:10;
-      background:rgba(255,255,255,0.7);
+      background:rgba(255,255,255,0.8);
       backdrop-filter:blur(10px);
       border-bottom:1px solid var(--line);
     }
     nav{
       display:flex; align-items:center; justify-content:space-between;
-      height:64px; gap:16px;
+      height:64px; gap:16px; flex-wrap:wrap;
     }
     .nav-links a{
       padding:8px 12px; border-radius:10px;
     }
     .nav-links a:hover{background:var(--line);}
+    @media (max-width:700px){
+      nav{flex-direction:column; height:auto; padding:10px 0;}
+    }
 
-    /* ============ Hero ============ */
     .hero{
-      position:relative;
-      height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      color:#fff;
-      overflow:hidden;
+      position:relative; height:90vh;
+      display:flex; align-items:center; justify-content:center;
+      text-align:center; color:#fff; overflow:hidden;
     }
     .hero::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:url("image/main.jpg") center center / cover no-repeat;
+      content:""; position:absolute; inset:0;
+      background:url("tanuki/image/main.jpg") center center / cover no-repeat;
       filter:brightness(0.6);
       z-index:-1;
     }
     .hero h1{font-size:clamp(32px,5vw,60px); margin-bottom:10px;}
     .hero p{font-size:clamp(16px,2vw,22px);}
-    .hero-buttons{
-      margin-top:20px;
-      display:flex; justify-content:center; gap:16px; flex-wrap:wrap;
-    }
+    .hero-buttons{margin-top:20px; display:flex; justify-content:center; gap:16px; flex-wrap:wrap;}
     .btn{
-      display:inline-block;
-      padding:12px 20px;
-      border:1px solid #fff;
-      border-radius:999px;
-      color:#fff;
+      display:inline-block; padding:12px 20px; border:1px solid #fff; border-radius:999px; color:#fff;
       transition:all .3s ease;
     }
     .btn:hover{background:#fff; color:#000;}
-    
-    /* ============ About ============ */
-.about-wrap {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr; /* 左右バランス */
-  gap: 30px;
-  align-items: center;
-}
 
-.about-text p {
-  margin-bottom: 14px;
-  line-height: 1.8;
-}
-
-.about-photo img {
-  width: 100%;
-  max-width: 400px;
-  border-radius: var(--radius);
-  object-fit: cover;
-  border: 1px solid var(--line);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-}
-
-/* スマホでは縦並びにする */
-@media (max-width: 800px) {
-  .about-wrap {
-    grid-template-columns: 1fr;
-  }
-  .about-photo {
-    order: -1; /* 写真を上に表示 */
-    text-align: center;
-  }
-  .about-photo img {
-    max-width: 300px;
-  }
-}
-
-
-    /* ============ Portfolio ============ */
     section{padding:80px 0;}
     .grid{display:grid; gap:20px;}
     .grid.cols-3{grid-template-columns:repeat(auto-fit,minmax(280px,1fr));}
@@ -133,281 +81,101 @@
       border:1px solid var(--line);
       border-radius:var(--radius);
       overflow:hidden;
-      background:color-mix(in oklab, var(--bg) 92%, transparent);
+      background:rgba(255,255,255,0.9);
       transition:transform .3s ease, box-shadow .3s ease;
     }
     .card:hover{transform:translateY(-5px); box-shadow:0 10px 25px rgba(0,0,0,0.1);}
     .card img{aspect-ratio:16/9; object-fit:cover;}
     .card-body{padding:16px;}
-    .pill{
-      display:inline-block;
-      font-size:12px;
-      padding:4px 10px;
-      border:1px solid var(--line);
-      border-radius:999px;
-      color:var(--muted);
-      margin-bottom:6px;
-    }
 
-    /* ============ Contact ============ */
-    form{display:grid; gap:14px; max-width:600px; margin:auto;}
-    input,textarea{
-      width:100%; padding:12px 14px;
-      border:1px solid var(--line); border-radius:12px;
-      background:transparent; color:inherit;
+    .gallery-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+      gap:10px;
     }
-    textarea{min-height:120px;}
-    .center{text-align:center; margin-top:16px;}
+    .gallery-item img{
+      border-radius:10px;
+      transition:transform .3s ease, filter .3s ease;
+    }
+    .gallery-item:hover img{
+      transform:scale(1.05); filter:brightness(0.8);
+    }
 
     footer{
       border-top:1px solid var(--line);
       padding:30px 0; color:var(--muted);
       text-align:center;
     }
- 
-  
-      /* ============ Gallery (Grid & Lightbox) ============ */
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 10px;
-}
 
-.gallery-item {
-  position: relative;
-  overflow: hidden;
-  border-radius: 10px;
-  cursor: pointer;
-}
+    /* ===== Contact Section ===== */
+    .contact-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      padding: 10px;
+    }
 
-.gallery-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s ease, filter 0.4s ease;
-}
+    .icon-circle {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 10px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      flex-shrink: 0;
+    }
+    .icon-circle:hover {
+      transform: scale(1.08);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.2);
+    }
 
-/* ホバー時のズームと暗くする効果 */
-.gallery-item:hover img {
-  transform: scale(1.1);
-  filter: brightness(0.7);
-}
+    .contact-icon {
+      width: 85%;
+      height: 85%;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+    }
+    .icon-circle:hover .contact-icon {
+      transform: scale(1.05);
+    }
 
-/* Lightbox（ポップアップ拡大） */
-.lightbox {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.8);
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
+    .contact-text {
+      text-align: center;
+      font-size: 16px;
+      color: var(--fg);
+      font-weight: 500;
+    }
 
-.lightbox-img {
-  max-width: 90%;
-  max-height: 90%;
-  border-radius: 10px;
-  box-shadow: 0 4px 30px rgba(0,0,0,0.6);
-}
-
-.lightbox.show {
-  display: flex;
-}
-
-.lightbox .close {
-  position: absolute;
-  top: 30px;
-  right: 40px;
-  font-size: 40px;
-  color: white;
-  cursor: pointer;
-}
-
-/* ===== イベントカード（左右レイアウト） ===== */
-.event-card {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 24px;
-  width: 100%;
-  max-width: 1100px;
-  margin: 0 auto 24px;
-  background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-  padding: 28px 40px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.event-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
-}
-
-/* 左側：テキスト */
-.event-info {
-  flex: 1;
-}
-
-.event-info .date {
-  font-weight: 600;
-  color: #222;
-  font-size: 1rem;
-  margin-bottom: 4px;
-}
-
-.event-info h3 {
-  font-size: 1.5rem;
-  margin: 6px 0 10px;
-  font-weight: 700;
-}
-
-.event-info p {
-  margin: 4px 0;
-  color: #555;
-}
-
-/* 右側：ボタン配置 */
-.event-buttons {
-  display: flex;
-  gap: 14px;
-  align-items: center;
-  flex-shrink: 0;
-}
-
-/* ===== ボタンデザイン（以前のまま） ===== */
-.btn {
-  display: inline-block;
-  padding: 10px 24px;
-  border-radius: 999px;
-  font-size: 0.95rem;
-  text-decoration: none;
-  transition: transform 0.2s ease;
-}
-
-.btn:hover {
-  transform: scale(1.05);
-}
-
-/* 外枠タイプ（Google Map） */
-.btn-outline {
-  border: 1.5px solid #0b0c0f;
-  color: #0b0c0f;
-  background: #fff;
-}
-
-/* 濃色背景タイプ（詳細ページ） */
-.btn-dark {
-  background: #0b0c0f;
-  color: #fff;
-  border: 1.5px solid #0b0c0f;
-}
-
-/* モバイル対応 */
-@media (max-width: 768px) {
-  .event-card {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 20px;
-  }
-
-  .event-buttons {
-    margin-top: 12px;
-  }
-
-  }
-
-
-
-/* ===== Contact (Circle Design, Subtle Zoom Only) ===== */
-.icon-circle {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  background: #fff;
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 14px;
-  overflow: hidden; /* ✅ はみ出し防止 */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.icon-circle:hover {
-  transform: scale(1.08);
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
-}
-
-.contact-icon {
-  width: 120%;
-  height: 120%;
-  object-fit: contain;
-  transition: transform 0.3s ease;
-}
-
-/* hover時に中のアイコンも少し大きく */
-.icon-circle:hover .contact-icon {
-  transform: scale(1.05);
-}
-
-/* アイコン全体の配置 */
-.contact-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 80px;
-  flex-wrap: wrap;
-  margin-top: 50px;
-}
-
-/* テキスト */
-.contact-text {
-  font-size: 18px;
-  color: var(--fg);
-  margin: 0;
-  font-weight: 500;
-}
-
-/* スマホ対応 */
-@media (max-width: 700px) {
-  .icon-circle {
-    width: 90px;
-    height: 90px;
-  }
-  .contact-icon {
-    width: 85%;
-    height: 85%;
-  }
-  .contact-text {
-    font-size: 16px;
-  }
-}
-
-
- </style>
-
+    @media (max-width: 600px) {
+      .icon-circle { width: 80px; height: 80px; }
+      .contact-text { font-size: 14px; }
+    }
+  </style>
 </head>
 
 <body>
-  <!-- Header -->
   <header>
     <div class="container">
       <nav>
-        <div class="brand"><strong>Your Name</strong></div>
+        <div class="brand"><strong>野眺ノ怪</strong></div>
         <div class="nav-links">
           <a href="#portfolio">Portfolio</a>
           <a href="#about">About</a>
           <a href="#gallery">Gallery</a>
-          <a href="#events">Events</a>
           <a href="#contact">Contact</a>
         </div>
       </nav>
     </div>
   </header>
 
-  <!-- Hero -->
   <section class="hero">
     <div>
       <h1>野眺ノ怪</h1>
@@ -420,208 +188,72 @@
   </section>
 
   <main class="container">
-    <!-- Portfolio -->
     <section id="portfolio">
       <h2>Portfolio</h2>
-      <p class="muted">代表的なシリーズから作品を抜粋。</p>
       <div class="grid cols-3">
         <article class="card">
-          <img src="image/work1.jpg" alt="作品1">
-          <div class="card-body">
-            <div class="pill">器 / Stoneware</div>
-            <h3>縄文土器ver令和 – 皿 24cm</h3>
-            <p class="muted">手びねり。上部からは縄文人が過去から私たちを見つめている。</p>
-          </div>
+          <img src="tanuki/image/work1.jpg" alt="作品1">
         </article>
         <article class="card">
-          <img src="image/work2.jpg" alt="作品2">
-          <div class="card-body">
-          
-            <div class="pill">花器 / Vase</div>
-            <h3>複数生命体 – 自由利用</h3>
-            <p class="muted">複数の生命体がひとつに融合したら、一つの生命体になるのか？意識の所在は。</p>
-          </div>
+          <img src="tanuki/image/work2.jpg" alt="作品2">
         </article>
         <article class="card">
-          <img src="image/work3.jpg" alt="作品3">
-          <div class="card-body">
-            <div class="pill">オブジェ / Object</div>
-            <h3>蛇地獄 – 自由利用</h3>
-            <p class="muted">ただし外側。</p>
-          </div>
+          <img src="tanuki/image/work3.jpg" alt="作品3">
         </article>
       </div>
     </section>
 
-    <!-- About -->
-    <section id="about">
-  <h2>About  -野眺ノ怪-</h2>
-  <div class="about-wrap">
-    <div class="about-text">
-          <p>野眺ノ怪。本当はたぬきですが、人間のふりをして生きています。</p>
-          <p>ぽんぽこしながら、土をこねこねしていろいろなものを作っています。</p>
-    </div>
-    <figure class="about-photo">
-      <img src="image/profile.jpg" alt="作家の顔写真">
-    </figure>
-  </div>
+    <section id="gallery">
+      <h2>Gallery</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item"><img src="tanuki/image/work1.jpg" alt=""></div>
+        <div class="gallery-item"><img src="tanuki/image/work2.jpg" alt=""></div>
+        <div class="gallery-item"><img src="tanuki/image/work3.jpg" alt=""></div>
+        <div class="gallery-item"><img src="tanuki/image/work4.jpg" alt=""></div>
+      </div>
     </section>
 
-    <!-- Gallery -->
-   <section id="gallery">
-  <h2>Gallery</h2>
-  <p class="muted" style="margin-bottom:14px">
-    クリックをすると拡大表示されます。
-  </p>
+    <section id="contact">
+      <h2>お問い合わせ</h2>
+      <p class="muted" style="margin-bottom: 24px;">SNSまたはメールよりご連絡ください。</p>
 
-  <div class="gallery-grid">
-    <div class="gallery-item"><img src="image/work1.jpg" alt="作品1"></div>
-    <div class="gallery-item"><img src="image/work2.jpg" alt="作品2"></div>
-    <div class="gallery-item"><img src="image/work3.jpg" alt="作品3"></div>
-    <div class="gallery-item"><img src="image/work4.jpg" alt="作品4"></div>
-    <div class="gallery-item"><img src="image/work5.jpg" alt="作品5"></div>
-    <div class="gallery-item"><img src="image/work6.jpg" alt="作品6"></div>
-    <div class="gallery-item"><img src="image/work7.jpg" alt="作品7"></div>
-    <div class="gallery-item"><img src="image/work8.jpg" alt="作品8"></div>
-  </div>
-
-  <!-- モーダル（拡大プレビュー） -->
-<section id="events">
-  <h2>イベント出店情報</h2>
-
-  <!-- イベント1 -->
-  <div class="event-card">
-    <div class="event-info">
-      <p class="date">2025年9月6日（土）～9月7日（日）</p>
-      <h3>東京ハンドメイドマルシェ 2025 秋</h3>
-      <p>東京都</p>
-      <p>📍 東京ドームシティ プリズムホール</p>
-      <p>🕒 10:00～17:00</p>
-    </div>
-    <div class="event-buttons">
-      <a href="https://maps.google.com/?q=東京ドームシティ+プリズムホール" target="_blank" class="btn btn-outline">Google Map</a>
-      <a href="#" class="btn btn-dark">詳細ページ</a>
-    </div>
-  </div>
-
-  <!-- イベント2 -->
-  <div class="event-card">
-    <div class="event-info">
-      <p class="date">2025年9月20日（土）～9月21日（日）</p>
-      <h3>TOKYOハンドメイド祭 vol.09</h3>
-      <p>東京都</p>
-      <p>📍 東京都立産業貿易センター 浜松町館</p>
-      <p>🕒 12:00～17:30 / 11:00～16:30</p>
-    </div>
-    <div class="event-buttons">
-      <a href="https://maps.google.com/?q=東京都立産業貿易センター+浜松町館" target="_blank" class="btn btn-outline">Google Map</a>
-      <a href="#" class="btn btn-dark">詳細ページ</a>
-    </div>
-  </div>
-
-  <!-- イベント3 -->
-  <div class="event-card">
-    <div class="event-info">
-      <p class="date">2025年4月25日（金）～5月6日（火・祝）</p>
-      <h3>クラフト餃子フェス TOKYO 2025</h3>
-      <p>東京都</p>
-      <p>📍 駒沢オリンピック公園 中央広場</p>
-      <p>🕒 平日11:00～20:00 / 土日祝10:00～20:00</p>
-    </div>
-    <div class="event-buttons">
-      <a href="https://maps.google.com/?q=駒沢オリンピック公園+中央広場" target="_blank" class="btn btn-outline">Google Map</a>
-      <a href="#" class="btn btn-dark">詳細ページ</a>
-    </div>
-  </div>
-
-  <!-- イベント4 -->
-  <div class="event-card">
-    <div class="event-info">
-      <p class="date">2025年7月19日（土）～7月20日（日）</p>
-      <h3>ハンドメイドインジャパンフェス 2025</h3>
-      <p>東京都</p>
-      <p>📍 東京ビッグサイト</p>
-      <p>🕒 10:00～18:00</p>
-    </div>
-    <div class="event-buttons">
-      <a href="https://maps.google.com/?q=東京ビッグサイト" target="_blank" class="btn btn-outline">Google Map</a>
-      <a href="#" class="btn btn-dark">詳細ページ</a>
-    </div>
-  </div>
-</section>
-
-
-
-<!-- Contact -->
-<section id="contact">
-  <h2>お問い合わせ</h2>
-  <p class="muted" style="margin-bottom: 24px;">SNSまたはメールよりご連絡ください。</p>
-
-  <div class="contact-container">
-    <div class="contact-item">
-      <a href="https://www.facebook.com/yourpage" target="_blank" class="contact-link">
-        <div class="icon-circle">
-          <img src="image/facebook.jpg" alt="Facebookアイコン" class="contact-icon">
+      <div class="contact-container">
+        <div class="contact-item">
+          <a href="https://www.facebook.com/yourpage" target="_blank" class="contact-link">
+            <div class="icon-circle">
+              <img src="tanuki/image/facebook.jpg" alt="Facebookアイコン" class="contact-icon">
+            </div>
+          </a>
+          <p class="contact-text">@yourpage</p>
         </div>
-      </a>
-      <p class="contact-text">@yourpage</p>
-    </div>
 
-    <div class="contact-item">
-      <a href="https://www.instagram.com/youraccount" target="_blank" class="contact-link">
-        <div class="icon-circle">
-          <img src="image/instagram.jpg" alt="Instagramアイコン" class="contact-icon">
+        <div class="contact-item">
+          <a href="https://www.instagram.com/youraccount" target="_blank" class="contact-link">
+            <div class="icon-circle">
+              <img src="tanuki/image/instagram.jpg" alt="Instagramアイコン" class="contact-icon">
+            </div>
+          </a>
+          <p class="contact-text">@youraccount</p>
         </div>
-      </a>
-      <p class="contact-text">@youraccount</p>
-    </div>
 
-    <div class="contact-item">
-      <a href="mailto:you@example.com" class="contact-link">
-        <div class="icon-circle">
-          <img src="image/mail.jpg" alt="メールアイコン" class="contact-icon">
+        <div class="contact-item">
+          <a href="mailto:you@example.com" class="contact-link">
+            <div class="icon-circle">
+              <img src="tanuki/image/mail.jpg" alt="メールアイコン" class="contact-icon">
+            </div>
+          </a>
+          <p class="contact-text">you@example.com</p>
         </div>
-      </a>
-      <p class="contact-text">you@example.com</p>
-    </div>
-  </div>
-</section>
-
-
-
-
+      </div>
+    </section>
   </main>
 
   <footer>
-    © <span id="year"></span> Your Name. All rights reserved.
+    © <span id="year"></span> 野眺ノ怪. All rights reserved.
   </footer>
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
-  
-  
-     <script>
-  // Lightbox（拡大プレビュー）
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.querySelector('.lightbox-img');
-  const closeBtn = document.querySelector('.lightbox .close');
-
-  document.querySelectorAll('.gallery-item img').forEach(img => {
-    img.addEventListener('click', () => {
-      lightboxImg.src = img.src;
-      lightbox.classList.add('show');
-    });
-  });
-
-  closeBtn.addEventListener('click', () => {
-    lightbox.classList.remove('show');
-  });
-
-  lightbox.addEventListener('click', e => {
-    if (e.target === lightbox) lightbox.classList.remove('show');
-  });
-</script>
-
 </body>
 </html>
