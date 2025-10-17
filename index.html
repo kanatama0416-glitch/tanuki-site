@@ -455,25 +455,27 @@ section {
 @media (max-width: 700px) {
   .contact-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between; /* ✅ 均等配置（中央詰まり防止） */
     align-items: flex-start;
-    flex-wrap: nowrap;       /* 折り返さず横並び */
-    gap: 28px;               /* ✅ アイコン間の間隔を統一 */
-    overflow-x: auto;
+    flex-wrap: nowrap;
+    width: 100%;
+    max-width: 360px;              /* ✅ 横幅を固定してバランス統一 */
+    margin: 0 auto;
     padding: 10px 0 20px;
-    max-width: 100%;
+    overflow-x: hidden;            /* スクロールを防ぐ */
   }
 
   .contact-item {
-    flex: 0 0 auto;
+    flex: 1 1 0;                   /* ✅ 均等幅で揃える */
     text-align: center;
   }
 
-  /* ✅ 正円・比率維持・中央揃え */
+  /* ✅ 丸の比率固定 */
   .icon-circle {
-    width: 78px;
-    height: 78px;
-    border-radius: 50%;      /* 丸型を強制 */
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    background: #fff;
     margin: 0 auto 6px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     display: flex;
@@ -482,24 +484,24 @@ section {
     overflow: hidden;
   }
 
-  /* ✅ 比率を戻す：正円で切れない */
+  /* ✅ アイコン画像：正円に完全フィット */
   .contact-icon {
     width: 100%;
-    height: auto;
-    aspect-ratio: 1 / 1;     /* 正方形に維持 */
-    object-fit: cover;       /* 切れず自然に表示 */
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
     display: block;
   }
 
-  /* ✅ テキストは控えめに */
+  /* ✅ テキスト：アイコンを引き立てる最小サイズ */
   .contact-text {
     font-size: 11px;
     line-height: 1.3;
-    word-break: break-all;
     margin-top: 2px;
+    word-break: break-all;
   }
 
-  /* ✅ スクロールバー非表示（iOS・Android対応） */
+  /* ✅ スクロールバー非表示（安全措置） */
   .contact-container::-webkit-scrollbar {
     display: none;
   }
@@ -830,6 +832,7 @@ function togglePastEvents() {
           
 </body>
 </html>
+
 
 
 
