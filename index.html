@@ -202,26 +202,27 @@ section {
   text-align: center;
 }
 
+/* ▼テキストを中央に見せ、つぶれ防止 */
 #past-events h3 {
   display: inline-block;
   background: #fff;                /* 背景が重なっても見えるように */
   font-size: 18px;
   color: var(--muted);
-  margin: 6px 0 0;
-  line-height: 1.3;
-  padding: 4px 12px;               /* クリックしやすくする余白 */
-  border-radius: 6px;
+  margin: 10px 0 15px;             /* 上下にしっかり余白を確保 */
+  line-height: 1.4;
+  padding: 6px 16px;               /* クリックしやすい余白 */
+  border-radius: 8px;
   cursor: pointer;
+  font-weight: 600;
   transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease;
 }
-
 #past-events h3:hover {
   color: var(--fg);
-  background: var(--line);         /* ホバーで軽いハイライト */
+  background: var(--line);
   transform: scale(1.02);
 }
 
-/* カードデザイン統一 */
+/* ▼カードのデザインをメインイベントと完全一致させる */
 #past-events .event-card {
   display: flex;
   justify-content: space-between;
@@ -253,19 +254,50 @@ section {
   font-size: 1.5rem;
   margin: 6px 0 10px;
   font-weight: 700;
+  color: #0b0c0f;
 }
 #past-events .event-info p {
   margin: 4px 0;
   color: #555;
 }
+
+/* ▼ボタンも完全一致 */
 #past-events .event-buttons {
   display: flex;
   gap: 14px;
   align-items: center;
   flex-shrink: 0;
 }
+#past-events .btn-outline,
+#past-events .btn-dark {
+  padding: 8px 18px;
+  border-radius: 50px;
+  font-weight: 500;
+  font-size: 15px;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+  white-space: nowrap;
+}
+#past-events .btn-outline {
+  border: 1.5px solid #0b0c0f;
+  color: #0b0c0f;
+  background: #fff;
+}
+#past-events .btn-outline:hover {
+  background: #0b0c0f;
+  color: #fff;
+}
+#past-events .btn-dark {
+  background: #0b0c0f;
+  color: #fff;
+  border: 1.5px solid #0b0c0f;
+}
+#past-events .btn-dark:hover {
+  background: #fff;
+  color: #0b0c0f;
+}
 
-/* スマホ対応 */
+/* ▼スマホ対応（中央揃え維持） */
 @media (max-width: 768px) {
   #past-events .event-card {
     flex-direction: column;
@@ -275,8 +307,11 @@ section {
   #past-events .event-buttons {
     margin-top: 12px;
   }
+  #past-events h3 {
+    font-size: 16px;
+    padding: 6px 14px;
+  }
 }
-
 
 
 /* ============ Contact ============ */
@@ -635,6 +670,7 @@ function togglePastEvents() {
           
 </body>
 </html>
+
 
 
 
