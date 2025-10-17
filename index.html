@@ -210,6 +210,20 @@ section {
   margin-top: 0;
   padding-top: 0;
 }
+#past-events {
+  padding-top: 0 !important;  /* セクション上部の余白を消す */
+  margin-top: -30px;          /* 上のイベントカードとの間を詰める */
+}
+
+#past-events h3 {
+  text-align: center;
+  font-size: 18px;
+  color: var(--muted);
+  margin: 0;                  /* タイトルの上下余白を消す */
+  line-height: 1.1;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
 
 
 /* ============ Contact ============ */
@@ -560,6 +574,7 @@ function togglePastEvents() {
           
 </body>
 </html>
+
 
 
 
