@@ -452,14 +452,16 @@ section {
 }
 
 /* ---------- スマホ（700px以下）でのみ横並びに ---------- */
+/* ---------- スマホ（700px以下）でのみ横並びに ---------- */
 @media (max-width: 700px) {
   .contact-container {
-    flex-wrap: nowrap;
+    display: flex;
     justify-content: center;
-    align-items: flex-start; /* 上下の余白を詰める */
-    gap: 16px;               /* アイコン間隔を少し狭める */
+    align-items: flex-start; /* 上下の位置ずれを防ぐ */
+    flex-wrap: nowrap;       /* 折り返しなしで横並び */
+    gap: 20px;               /* 適度な間隔に調整 */
     overflow-x: auto;
-    padding-bottom: 16px;
+    padding: 10px 0 20px;
     max-width: 100%;
   }
 
@@ -468,29 +470,32 @@ section {
     text-align: center;
   }
 
-  /* アイコンを小型化 */
+  /* 🔘 アイコンバランス調整 */
   .icon-circle {
-    width: 70px;
-    height: 70px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    margin-bottom: 6px;
+    width: 80px;              /* 中間サイズで安定 */
+    height: 80px;
+    margin: 0 auto 8px;       /* テキストとの余白をやや広めに */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
 
-  /* 中の画像サイズを調整 */
+  /* 🖼 アイコン画像を中央にフィット */
   .contact-icon {
-    width: 100%;
-    height: 100%;
+    width: 85%;               /* 枠の中で少し余裕を持たせる */
+    height: 85%;
     object-fit: contain;
+    display: block;
+    margin: 0 auto;
   }
 
-  /* テキストを小さくして切れ防止 */
+  /* 🅰️ テキストを小さく＆詰めすぎない */
   .contact-text {
-    font-size: 12px;
-    line-height: 1.3;
+    font-size: 13px;
+    line-height: 1.4;
+    margin-top: 2px;
     word-break: break-all;
   }
 
-  /* 横スクロールバー非表示（iOS・Android対応） */
+  /* 横スクロールバーを非表示（iOS・Android対応） */
   .contact-container::-webkit-scrollbar {
     display: none;
   }
@@ -821,6 +826,7 @@ function togglePastEvents() {
           
 </body>
 </html>
+
 
 
 
