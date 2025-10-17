@@ -4,354 +4,306 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>野眺ノ怪 - Portfolio</title>
-  <meta name="description" content="ポートフォリオ / ギャラリー / イベント情報 / お問い合わせ">
+  <meta name="description" content="ポートフォリオ / 自己紹介 / ギャラリー / イベント出店情報 / お問い合わせ">
 
   <style>
     /* ============ Base ============ */
     :root{
-      --bg: #ffffff;
-      --fg: #121212;
+      --bg:#ffffff;
+      --fg:#121212;
       --muted:#6b7280;
       --line:#e5e7eb;
-      --radius: 16px;
-      --space: clamp(16px, 2vw, 28px);
-      --maxw: 1120px;
+      --radius:16px;
+      --space:clamp(16px,2vw,28px);
+      --maxw:1120px;
     }
     @media (prefers-color-scheme: dark){
-      :root{
-        --bg:#0b0c0f; --fg:#f3f4f6; --muted:#9ca3af; --line:#1f2937;
-      }
+      :root{--bg:#0b0c0f;--fg:#f3f4f6;--muted:#9ca3af;--line:#1f2937;}
     }
     *{box-sizing:border-box;}
     body{
-      margin:0; background:var(--bg); color:var(--fg);
+      margin:0;
+      background:var(--bg);color:var(--fg);
       font:16px/1.7 "Hiragino Sans","Noto Sans JP","Yu Gothic",sans-serif;
       -webkit-font-smoothing:antialiased;
+      overflow-x:hidden;
     }
-    a{text-decoration:none; color:inherit}
-    img{max-width:100%; height:auto; display:block}
-    .container{max-width:var(--maxw); margin:0 auto; padding-inline:var(--space);}
-    h1,h2,h3{margin:0; letter-spacing:.03em;}
-    h2{font-size: clamp(22px, 2.4vw, 28px); margin-bottom:14px;}
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;height:auto;display:block}
+    .container{max-width:var(--maxw);margin:0 auto;padding-inline:var(--space);}
+    h1,h2,h3{margin:0;letter-spacing:.03em;}
+    h2{font-size:clamp(22px,2.4vw,28px);margin-bottom:14px;}
     p{margin:0 0 12px;}
-    .muted{color:var(--muted)}
+    .muted{color:var(--muted);}
 
     /* ============ Header ============ */
     header{
-      position:sticky; top:0; z-index:10;
+      position:sticky;top:0;z-index:10;
       background:rgba(255,255,255,0.8);
       backdrop-filter:blur(10px);
       border-bottom:1px solid var(--line);
     }
     nav{
-      display:flex; align-items:center; justify-content:space-between;
-      height:64px; gap:16px; flex-wrap:wrap;
+      display:flex;align-items:center;justify-content:space-between;
+      height:64px;gap:16px;flex-wrap:wrap;
     }
-    .nav-links a{
-      padding:8px 12px; border-radius:10px;
-    }
+    .nav-links a{padding:8px 12px;border-radius:10px;}
     .nav-links a:hover{background:var(--line);}
-    @media (max-width:700px){
-      nav{flex-direction:column; height:auto; padding:10px 0;}
-    }
+    @media(max-width:700px){nav{flex-direction:column;height:auto;padding:10px 0;}}
 
     /* ============ Hero ============ */
     .hero{
-      position:relative; height:90vh;
-      display:flex; align-items:center; justify-content:center;
-      text-align:center; color:#fff; overflow:hidden;
+      position:relative;min-height:90vh;
+      display:flex;align-items:center;justify-content:center;
+      text-align:center;color:#fff;overflow:hidden;
     }
     .hero::before{
-      content:""; position:absolute; inset:0;
-      background:url("tanuki/image/main.jpg") center center / cover no-repeat;
+      content:"";position:absolute;inset:0;
+      background:url("tanuki/image/main.jpg") center/cover no-repeat;
       filter:brightness(0.6);
       z-index:-1;
     }
-    .hero h1{font-size:clamp(32px,5vw,60px); margin-bottom:10px;}
+    .hero h1{font-size:clamp(32px,5vw,60px);margin-bottom:10px;}
     .hero p{font-size:clamp(16px,2vw,22px);}
-    .hero-buttons{margin-top:20px; display:flex; justify-content:center; gap:16px; flex-wrap:wrap;}
+    .hero-buttons{
+      margin-top:20px;display:flex;justify-content:center;gap:16px;flex-wrap:wrap;
+    }
     .btn{
-      display:inline-block; padding:12px 20px; border:1px solid #fff; border-radius:999px; color:#fff;
+      display:inline-block;padding:12px 20px;border:1px solid #fff;border-radius:999px;color:#fff;
       transition:all .3s ease;
     }
-    .btn:hover{background:#fff; color:#000;}
+    .btn:hover{background:#fff;color:#000;}
 
     /* ============ Sections ============ */
     section{padding:80px 0;}
-    .grid{display:grid; gap:20px;}
+    .grid{display:grid;gap:20px;}
     .grid.cols-3{grid-template-columns:repeat(auto-fit,minmax(280px,1fr));}
+
+    /* ============ Portfolio ============ */
     .card{
       border:1px solid var(--line);
       border-radius:var(--radius);
       overflow:hidden;
       background:rgba(255,255,255,0.9);
-      transition:transform .3s ease, box-shadow .3s ease;
+      transition:transform .3s ease,box-shadow .3s ease;
     }
-    .card:hover{transform:translateY(-5px); box-shadow:0 10px 25px rgba(0,0,0,0.1);}
-    .card img{aspect-ratio:16/9; object-fit:cover;}
+    .card:hover{transform:translateY(-5px);box-shadow:0 10px 25px rgba(0,0,0,0.1);}
+    .card img{aspect-ratio:16/9;object-fit:cover;}
     .card-body{padding:16px;}
+    .pill{
+      display:inline-block;font-size:12px;
+      padding:4px 10px;border:1px solid var(--line);
+      border-radius:999px;color:var(--muted);margin-bottom:6px;
+    }
 
-    /* ============ Event Cards ============ */
-    .event-card {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 24px;
-      max-width: 1000px;
-      margin: 0 auto 24px;
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-      padding: 28px 40px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* ============ About ============ */
+    .about-wrap{
+      display:grid;grid-template-columns:1.1fr 0.9fr;
+      gap:30px;align-items:center;
     }
-    .event-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
+    .about-text p{margin-bottom:14px;line-height:1.8;}
+    .about-photo img{
+      width:100%;max-width:400px;border-radius:var(--radius);
+      object-fit:cover;border:1px solid var(--line);
+      box-shadow:0 4px 20px rgba(0,0,0,0.1);
     }
-    .event-info { flex: 1; }
-    .event-info .date {
-      font-weight: 600;
-      color: #222;
-      font-size: 1rem;
-      margin-bottom: 4px;
-    }
-    .event-info h3 {
-      font-size: 1.4rem;
-      margin: 6px 0 10px;
-      font-weight: 700;
-    }
-    .event-info p {
-      margin: 4px 0;
-      color: #555;
-    }
-    .event-buttons {
-      display: flex;
-      gap: 14px;
-      flex-shrink: 0;
-    }
-    .btn-outline {
-      border: 1.5px solid #0b0c0f;
-      color: #0b0c0f;
-      background: #fff;
-    }
-    .btn-dark {
-      background: #0b0c0f;
-      color: #fff;
-      border: 1.5px solid #0b0c0f;
-    }
-    @media (max-width: 768px) {
-      .event-card {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 20px;
-      }
-      .event-buttons {
-        margin-top: 12px;
-      }
+    @media(max-width:800px){
+      .about-wrap{grid-template-columns:1fr;}
+      .about-photo{order:-1;text-align:center;}
+      .about-photo img{max-width:300px;}
     }
 
     /* ============ Gallery ============ */
     .gallery-grid{
       display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
       gap:10px;
     }
+    .gallery-item{position:relative;overflow:hidden;border-radius:10px;cursor:pointer;}
     .gallery-item img{
-      border-radius:10px;
-      transition:transform .3s ease, filter .3s ease;
+      width:100%;height:100%;object-fit:cover;
+      transition:transform .4s ease,filter .4s ease;
     }
-    .gallery-item:hover img{
-      transform:scale(1.05); filter:brightness(0.8);
+    .gallery-item:hover img{transform:scale(1.1);filter:brightness(0.7);}
+
+    /* ============ Events ============ */
+    .event-card{
+      display:flex;justify-content:space-between;align-items:center;
+      gap:24px;width:100%;max-width:1100px;margin:0 auto 24px;
+      background:#fff;border-radius:16px;
+      box-shadow:0 6px 18px rgba(0,0,0,0.08);
+      padding:28px 40px;
+      transition:transform .3s ease,box-shadow .3s ease;
+    }
+    .event-card:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(0,0,0,0.12);}
+    .event-info{flex:1;}
+    .event-info .date{font-weight:600;color:#222;font-size:1rem;margin-bottom:4px;}
+    .event-info h3{font-size:1.5rem;margin:6px 0 10px;font-weight:700;}
+    .event-info p{margin:4px 0;color:#555;}
+    .event-buttons{display:flex;gap:14px;align-items:center;flex-shrink:0;}
+    .btn-outline{border:1.5px solid #0b0c0f;color:#0b0c0f;background:#fff;}
+    .btn-dark{background:#0b0c0f;color:#fff;border:1.5px solid #0b0c0f;}
+    @media(max-width:768px){
+      .event-card{flex-direction:column;align-items:flex-start;padding:20px;}
+      .event-buttons{margin-top:12px;}
     }
 
     /* ============ Contact ============ */
-    .contact-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 40px;
-      flex-wrap: wrap;
+    .contact-container{
+      display:flex;justify-content:center;align-items:center;
+      gap:60px;flex-wrap:wrap;
     }
-    .contact-item {
-      text-align: center;
-      flex: 0 1 120px;
+    .contact-item{text-align:center;}
+    .icon-circle{
+      width:100px;height:100px;border-radius:50%;
+      background:#fff;box-shadow:0 8px 22px rgba(0,0,0,0.15);
+      display:flex;align-items:center;justify-content:center;
+      margin:0 auto 10px;overflow:hidden;
+      transition:transform .3s ease,box-shadow .3s ease;
     }
-    .icon-circle {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      background: #fff;
-      box-shadow: 0 8px 22px rgba(0,0,0,0.15);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 10px;
-      overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .icon-circle:hover {
-      transform: scale(1.08);
-      box-shadow: 0 10px 28px rgba(0,0,0,0.2);
-    }
-    .contact-icon {
-      width: 85%;
-      height: 85%;
-      object-fit: contain;
-      transition: transform 0.3s ease;
-    }
-    .icon-circle:hover .contact-icon {
-      transform: scale(1.05);
-    }
-    .contact-text {
-      font-size: 16px;
-      color: var(--fg);
-      font-weight: 500;
-    }
-    @media (max-width: 600px) {
-      .contact-container {
-        justify-content: center;
-        gap: 24px;
-      }
-      .icon-circle {
-        width: 80px;
-        height: 80px;
-      }
-      .contact-text {
-        font-size: 14px;
-      }
+    .icon-circle:hover{transform:scale(1.08);box-shadow:0 10px 28px rgba(0,0,0,0.2);}
+    .contact-icon{width:85%;height:85%;object-fit:contain;transition:transform .3s ease;}
+    .icon-circle:hover .contact-icon{transform:scale(1.05);}
+    .contact-text{font-size:16px;color:var(--fg);font-weight:500;}
+    @media(max-width:700px){
+      .contact-container{gap:30px;justify-content:center;}
+      .icon-circle{width:80px;height:80px;}
+      .contact-text{font-size:14px;}
     }
 
     footer{
       border-top:1px solid var(--line);
-      padding:30px 0; color:var(--muted);
-      text-align:center;
+      padding:30px 0;color:var(--muted);text-align:center;
     }
   </style>
 </head>
 
 <body>
-  <!-- Header -->
-  <header>
-    <div class="container">
-      <nav>
-        <div class="brand"><strong>野眺ノ怪</strong></div>
-        <div class="nav-links">
-          <a href="#portfolio">Portfolio</a>
-          <a href="#gallery">Gallery</a>
-          <a href="#events">Events</a>
-          <a href="#contact">Contact</a>
-        </div>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Hero -->
-  <section class="hero">
-    <div>
-      <h1>野眺ノ怪</h1>
-      <p>土をこねこねするたぬき。<br>器・花器・オブジェのシリーズをご覧ください。</p>
-      <div class="hero-buttons">
-        <a class="btn" href="#portfolio">作品を見る</a>
-        <a class="btn" href="#contact">お問い合わせ</a>
+<header>
+  <div class="container">
+    <nav>
+      <div class="brand"><strong>野眺ノ怪</strong></div>
+      <div class="nav-links">
+        <a href="#portfolio">Portfolio</a>
+        <a href="#about">About</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#events">Events</a>
+        <a href="#contact">Contact</a>
       </div>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div>
+    <h1>野眺ノ怪</h1>
+    <p>土をこねこねするたぬき。<br>器・花器・オブジェのシリーズをご覧ください。</p>
+    <div class="hero-buttons">
+      <a class="btn" href="#portfolio">作品を見る</a>
+      <a class="btn" href="#contact">お問い合わせ</a>
+    </div>
+  </div>
+</section>
+
+<main class="container">
+
+  <!-- About -->
+  <section id="about">
+    <h2>About - 野眺ノ怪</h2>
+    <div class="about-wrap">
+      <div class="about-text">
+        <p>野眺ノ怪。本当はたぬきですが、人間のふりをして生きています。</p>
+        <p>ぽんぽこしながら、土をこねこねしていろいろなものを作っています。</p>
+      </div>
+      <figure class="about-photo">
+        <img src="tanuki/image/profile.jpg" alt="作家の写真">
+      </figure>
     </div>
   </section>
 
-  <main class="container">
+  <!-- Portfolio -->
+  <section id="portfolio">
+    <h2>Portfolio</h2>
+    <p class="muted">代表的なシリーズから作品を抜粋。</p>
+    <div class="grid cols-3">
+      <article class="card">
+        <img src="tanuki/image/work1.jpg" alt="作品1">
+        <div class="card-body">
+          <div class="pill">器 / Stoneware</div>
+          <h3>縄文土器ver令和 – 皿 24cm</h3>
+          <p class="muted">手びねり。上部からは縄文人が過去から私たちを見つめている。</p>
+        </div>
+      </article>
+      <article class="card">
+        <img src="tanuki/image/work2.jpg" alt="作品2">
+        <div class="card-body">
+          <div class="pill">花器 / Vase</div>
+          <h3>複数生命体 – 自由利用</h3>
+          <p class="muted">複数の生命体がひとつに融合したら、一つの生命体になるのか？意識の所在は。</p>
+        </div>
+      </article>
+      <article class="card">
+        <img src="tanuki/image/work3.jpg" alt="作品3">
+        <div class="card-body">
+          <div class="pill">オブジェ / Object</div>
+          <h3>蛇地獄 – 自由利用</h3>
+          <p class="muted">ただし外側。</p>
+        </div>
+      </article>
+    </div>
+  </section>
 
-    <!-- Portfolio -->
-    <section id="portfolio">
-      <h2>Portfolio</h2>
-      <div class="grid cols-3">
-        <article class="card"><img src="tanuki/image/work1.jpg" alt="作品1"></article>
-        <article class="card"><img src="tanuki/image/work2.jpg" alt="作品2"></article>
-        <article class="card"><img src="tanuki/image/work3.jpg" alt="作品3"></article>
+  <!-- Gallery -->
+  <section id="gallery">
+    <h2>Gallery</h2>
+    <p class="muted" style="margin-bottom:14px">クリックすると拡大表示されます。</p>
+    <div class="gallery-grid">
+      <div class="gallery-item"><img src="tanuki/image/work1.jpg" alt=""></div>
+      <div class="gallery-item"><img src="tanuki/image/work2.jpg" alt=""></div>
+      <div class="gallery-item"><img src="tanuki/image/work3.jpg" alt=""></div>
+      <div class="gallery-item"><img src="tanuki/image/work4.jpg" alt=""></div>
+      <div class="gallery-item"><img src="tanuki/image/work5.jpg" alt=""></div>
+      <div class="gallery-item"><img src="tanuki/image/work6.jpg" alt=""></div>
+      <div class="gallery-item"><img src="tanuki/image/work7.jpg" alt=""></div>
+      <div class="gallery-item"><img src="tanuki/image/work8.jpg" alt=""></div>
+    </div>
+  </section>
+
+  <!-- Events -->
+  <section id="events">
+    <h2>イベント出店情報</h2>
+    <div class="event-card">
+      <div class="event-info">
+        <p class="date">2025年9月6日（土）～9月7日（日）</p>
+        <h3>東京ハンドメイドマルシェ 2025 秋</h3>
+        <p>📍 東京ドームシティ プリズムホール</p>
+        <p>🕒 10:00～17:00</p>
       </div>
-    </section>
-
-    <!-- Gallery -->
-    <section id="gallery">
-      <h2>Gallery</h2>
-      <div class="gallery-grid">
-        <div class="gallery-item"><img src="tanuki/image/work4.jpg" alt="作品4"></div>
-        <div class="gallery-item"><img src="tanuki/image/work5.jpg" alt="作品5"></div>
-        <div class="gallery-item"><img src="tanuki/image/work6.jpg" alt="作品6"></div>
+      <div class="event-buttons">
+        <a href="https://maps.google.com/?q=東京ドームシティ+プリズムホール" target="_blank" class="btn btn-outline">Google Map</a>
+        <a href="#" class="btn btn-dark">詳細ページ</a>
       </div>
-    </section>
+    </div>
 
-    <!-- Events -->
-    <section id="events">
-      <h2>イベント出店情報</h2>
-
-      <div class="event-card">
-        <div class="event-info">
-          <p class="date">2025年9月6日（土）～9月7日（日）</p>
-          <h3>東京ハンドメイドマルシェ 2025 秋</h3>
-          <p>📍 東京ドームシティ プリズムホール</p>
-          <p>🕒 10:00～17:00</p>
-        </div>
-        <div class="event-buttons">
-          <a href="https://maps.google.com/?q=東京ドームシティ+プリズムホール" target="_blank" class="btn btn-outline">Map</a>
-          <a href="#" class="btn btn-dark">詳細</a>
-        </div>
+    <div class="event-card">
+      <div class="event-info">
+        <p class="date">2025年9月20日（土）～9月21日（日）</p>
+        <h3>TOKYOハンドメイド祭 vol.09</h3>
+        <p>📍 東京都立産業貿易センター 浜松町館</p>
+        <p>🕒 12:00～17:30 / 11:00～16:30</p>
       </div>
-
-      <div class="event-card">
-        <div class="event-info">
-          <p class="date">2025年9月20日（土）～9月21日（日）</p>
-          <h3>TOKYOハンドメイド祭 vol.09</h3>
-          <p>📍 東京都立産業貿易センター 浜松町館</p>
-          <p>🕒 12:00～17:30 / 11:00～16:30</p>
-        </div>
-        <div class="event-buttons">
-          <a href="https://maps.google.com/?q=東京都立産業貿易センター+浜松町館" target="_blank" class="btn btn-outline">Map</a>
-          <a href="#" class="btn btn-dark">詳細</a>
-        </div>
+      <div class="event-buttons">
+        <a href="https://maps.google.com/?q=東京都立産業貿易センター+浜松町館" target="_blank" class="btn btn-outline">Google Map</a>
+        <a href="#" class="btn btn-dark">詳細ページ</a>
       </div>
-    </section>
+    </div>
 
-    <!-- Contact -->
-    <section id="contact">
-      <h2>お問い合わせ</h2>
-      <p class="muted" style="margin-bottom: 24px;">SNSまたはメールよりご連絡ください。</p>
-
-      <div class="contact-container">
-        <div class="contact-item">
-          <a href="https://www.facebook.com/yourpage" target="_blank">
-            <div class="icon-circle">
-              <img src="tanuki/image/facebook.jpg" alt="Facebookアイコン" class="contact-icon">
-            </div>
-          </a>
-          <p class="contact-text">@yourpage</p>
-        </div>
-        <div class="contact-item">
-          <a href="https://www.instagram.com/youraccount" target="_blank">
-            <div class="icon-circle">
-              <img src="tanuki/image/instagram.jpg" alt="Instagramアイコン" class="contact-icon">
-            </div>
-          </a>
-          <p class="contact-text">@youraccount</p>
-        </div>
-        <div class="contact-item">
-          <a href="mailto:you@example.com">
-            <div class="icon-circle">
-              <img src="tanuki/image/mail.jpg" alt="メールアイコン" class="contact-icon">
-            </div>
-          </a>
-          <p class="contact-text">you@example.com</p>
-        </div>
+    <div class="event-card">
+      <div class="event-info">
+        <p class="date">2025年4月25日（金）～5月6日（火・祝）</p>
+        <h3>クラフト餃子フェス TOKYO 2025</h3>
+        <p>📍 駒沢オリンピック公園 中央広場</p>
+        <p>🕒 平日11:00～20:00 / 土日祝10:00～20:00</p>
       </div>
-    </section>
-
-  </main>
-
-  <footer>
-    © <span id="year"></span> 野眺ノ怪. All rights reserved.
-  </footer>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
-</body>
-</html>
+      <div class="event-buttons">
+        <a href="https://maps.google.com/?q=駒沢
