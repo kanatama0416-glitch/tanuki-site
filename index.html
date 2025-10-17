@@ -194,12 +194,13 @@ section {
 
 /* ============ 過去イベント ============ */
 #past-events {
-  padding-top: 0 !important;      /* 上の余白を消す */
-  padding-bottom: 0 !important;   /* 下の余白を消す */
-  margin-top: -30px;              /* 上を詰める */
-  margin-bottom: -20px;           /* 下を詰める */
-  text-align: center;             /* コンテンツを中央に */
+  padding-top: 10px !important;     /* ← ほんの少し余白を戻す */
+  padding-bottom: 0 !important;
+  margin-top: -10px;                /* ← 上げすぎを緩和 */
+  margin-bottom: -15px;             /* ← 下の余白を少し詰める */
+  text-align: center;
 }
+
 
 #past-events h3 {
   font-size: 18px;
@@ -564,6 +565,7 @@ function togglePastEvents() {
           
 </body>
 </html>
+
 
 
 
