@@ -451,20 +451,42 @@ section {
   word-break: break-all;
 }
 
+/* ---------- スマホ（700px以下）でのみ横並びに ---------- */
 @media (max-width: 700px) {
   .contact-container {
-    gap: 30px;
+    display: flex;
     justify-content: center;
-    max-width: 120%;
+    align-items: center;
+    flex-wrap: nowrap;     /* 折り返さない（1列横並び） */
+    gap: 24px;             /* アイコンの間隔をやや小さく */
+    overflow-x: auto;      /* 画面幅が狭いときは横スクロール可 */
+    padding-bottom: 20px;
+    max-width: 100%;
   }
+
+  .contact-item {
+    flex: 0 0 auto;        /* アイテムの幅固定で並列維持 */
+  }
+
   .icon-circle {
     width: 90px;
     height: 90px;
   }
+
   .contact-text {
     font-size: 14px;
   }
+
+  /* スクロールバーを非表示（iOS・Android対応） */
+  .contact-container::-webkit-scrollbar {
+    display: none;
+  }
+  .contact-container {
+    -ms-overflow-style: none; /* IE/Edge */
+    scrollbar-width: none;    /* Firefox */
+  }
 }
+
 /* ============ Image Modal ============ */
 .modal {
   display: none; /* 最初は非表示 */
@@ -493,6 +515,7 @@ section {
   from { opacity: 0; }
   to { opacity: 1; }
 }
+
 
   </style>
 </head>
@@ -705,13 +728,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+<!-- ============ お問い合わせ ============ -->
 <section id="contact">
   <h2>お問い合わせ</h2>
   <p class="muted" style="margin-bottom: 24px;">SNSまたはメールよりご連絡ください。</p>
 
   <div class="contact-container">
     <div class="contact-item">
-      <a href="https://www.facebook.com/yourpage" target="_blank">
+      <a href="https://www.facebook.com/yourpage" target="_blank" rel="noopener noreferrer">
         <div class="icon-circle">
           <img src="tanuki/image/facebook.jpg" alt="Facebookアイコン" class="contact-icon">
         </div>
@@ -720,7 +744,7 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
 
     <div class="contact-item">
-      <a href="https://www.instagram.com/youraccount" target="_blank">
+      <a href="https://www.instagram.com/youraccount" target="_blank" rel="noopener noreferrer">
         <div class="icon-circle">
           <img src="tanuki/image/instagram.jpg" alt="Instagramアイコン" class="contact-icon">
         </div>
@@ -738,6 +762,7 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
   </div>
 </section>
+
 
   <!-- 画像クリックで拡大 -->
 <script>
@@ -782,6 +807,7 @@ function togglePastEvents() {
           
 </body>
 </html>
+
 
 
 
