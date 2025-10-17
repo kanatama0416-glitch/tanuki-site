@@ -194,26 +194,31 @@ section {
 
 /* ============ 過去イベント ============ */
 #past-events {
-  padding-top: 15px !important;     /* ← ほんの少し余白を戻す */
-  padding-bottom: 5 !important;
-  margin-top: 0px;                /* ← 上げすぎを緩和 */
-  margin-bottom: -15px;             /* ← 下の余白を少し詰める */
+  position: relative;
+  padding-top: 20px !important;    /* 上にゆとりを戻す（かぶり防止） */
+  padding-bottom: 0 !important;
+  margin-top: 0;                   /* マイナスマージンを完全に解除 */
+  margin-bottom: -10px;            /* 下の余白だけ少し詰める */
   text-align: center;
 }
 
-
 #past-events h3 {
+  display: inline-block;
+  background: #fff;                /* 背景が重なっても見えるように */
   font-size: 18px;
   color: var(--muted);
-  margin: 6px 0;                  /* わずかな上下余白を残す */
-  line-height: 1.2;
+  margin: 6px 0 0;
+  line-height: 1.3;
+  padding: 4px 12px;               /* クリックしやすくする余白 */
+  border-radius: 6px;
   cursor: pointer;
-  transition: color 0.2s ease, transform 0.2s ease;
+  transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease;
 }
 
 #past-events h3:hover {
   color: var(--fg);
-  transform: scale(1.03);         /* 軽い拡大でクリック感を演出 */
+  background: var(--line);         /* ホバーで軽いハイライト */
+  transform: scale(1.02);
 }
 
 
@@ -565,6 +570,7 @@ function togglePastEvents() {
           
 </body>
 </html>
+
 
 
 
