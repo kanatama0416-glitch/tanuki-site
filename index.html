@@ -264,6 +264,34 @@ section {
     font-size: 14px;
   }
 }
+/* ============ Image Modal ============ */
+.modal {
+  display: none; /* 最初は非表示 */
+  position: fixed;
+  z-index: 999;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.8);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.modal.active {
+  display: flex;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
 
   </style>
 </head>
@@ -344,20 +372,21 @@ section {
   </section>
 
   <!-- Gallery -->
-  <section id="gallery">
-    <h2>Gallery</h2>
-    <p class="muted" style="margin-bottom:14px">クリックすると拡大表示されます。</p>
-    <div class="gallery-grid">
-      <div class="gallery-item"><img src="tanuki/image/work1.jpg" alt=""></div>
-      <div class="gallery-item"><img src="tanuki/image/work2.jpg" alt=""></div>
-      <div class="gallery-item"><img src="tanuki/image/work3.jpg" alt=""></div>
-      <div class="gallery-item"><img src="tanuki/image/work4.jpg" alt=""></div>
-      <div class="gallery-item"><img src="tanuki/image/work5.jpg" alt=""></div>
-      <div class="gallery-item"><img src="tanuki/image/work6.jpg" alt=""></div>
-      <div class="gallery-item"><img src="tanuki/image/work7.jpg" alt=""></div>
-      <div class="gallery-item"><img src="tanuki/image/work8.jpg" alt=""></div>
-    </div>
-  </section>
+ <section id="gallery">
+  <h2>Gallery</h2>
+  <p class="muted" style="margin-bottom:14px">クリックすると拡大表示されます。</p>
+  <div class="gallery-grid">
+    <div class="gallery-item"><img src="tanuki/image/work1.jpg" alt="作品1" class="zoom-img"></div>
+    <div class="gallery-item"><img src="tanuki/image/work2.jpg" alt="作品2" class="zoom-img"></div>
+    <div class="gallery-item"><img src="tanuki/image/work3.jpg" alt="作品3" class="zoom-img"></div>
+    <div class="gallery-item"><img src="tanuki/image/work4.jpg" alt="作品4" class="zoom-img"></div>
+    <div class="gallery-item"><img src="tanuki/image/work5.jpg" alt="作品5" class="zoom-img"></div>
+    <div class="gallery-item"><img src="tanuki/image/work6.jpg" alt="作品6" class="zoom-img"></div>
+    <div class="gallery-item"><img src="tanuki/image/work7.jpg" alt="作品7" class="zoom-img"></div>
+    <div class="gallery-item"><img src="tanuki/image/work8.jpg" alt="作品8" class="zoom-img"></div>
+  </div>
+</section>
+
 
   <!-- Events -->
   <section id="events">
@@ -435,9 +464,36 @@ section {
     </div>
   </div>
 </section>
+
+  <!-- 画像クリックで拡大 -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  // モーダル要素を作成
+  const modal = document.createElement('div');
+  modal.classList.add('modal');
+  const modalImg = document.createElement('img');
+  modal.appendChild(modalImg);
+  document.body.appendChild(modal);
+
+  // 画像クリック時
+  document.querySelectorAll('.zoom-img').forEach(img => {
+    img.addEventListener('click', () => {
+      modalImg.src = img.src;
+      modal.classList.add('active');
+    });
+  });
+
+  // モーダルクリックで閉じる
+  modal.addEventListener('click', () => {
+    modal.classList.remove('active');
+  });
+});
+</script>
+
           
 </body>
 </html>
+
 
 
 
