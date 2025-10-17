@@ -192,43 +192,27 @@ section {
   }
 }
 
+/* ============ 過去イベント ============ */
+#past-events {
+  padding-top: 0 !important;      /* 上の余白を消す */
+  padding-bottom: 0 !important;   /* 下の余白を消す */
+  margin-top: -30px;              /* 上を詰める */
+  margin-bottom: -20px;           /* 下を詰める */
+  text-align: center;             /* コンテンツを中央に */
+}
+
 #past-events h3 {
-  text-align: center;
   font-size: 18px;
   color: var(--muted);
-  margin-top: 5px;       /* さらに詰める */
-  margin-bottom: 5px;
-  line-height: 1.1;
-  transition: color 0.2s ease;
+  margin: 6px 0;                  /* わずかな上下余白を残す */
+  line-height: 1.2;
   cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
 }
 
 #past-events h3:hover {
   color: var(--fg);
-}
-#past-events {
-  margin-top: 0;
-  padding-top: 0;
-}
-#past-events {
-  padding-top: 0 !important;  /* セクション上部の余白を消す */
-  margin-top: -30px;          /* 上のイベントカードとの間を詰める */
-}
-
-#past-events h3 {
-  text-align: center;
-  font-size: 18px;
-  color: var(--muted);
-  margin: 0;                  /* タイトルの上下余白を消す */
-  line-height: 1.1;
-  cursor: pointer;
-  transition: color 0.2s ease;
-}
-#past-events {
-  padding-top: 0 !important;
-  padding-bottom: 0 !important; /* ← 下の余白を消す */
-  margin-top: -30px;
-  margin-bottom: -20px;         /* ← 下も詰める */
+  transform: scale(1.03);         /* 軽い拡大でクリック感を演出 */
 }
 
 
@@ -580,6 +564,7 @@ function togglePastEvents() {
           
 </body>
 </html>
+
 
 
 
