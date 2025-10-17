@@ -114,11 +114,26 @@
     }
 
 /* ============ Gallery ============ */
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); /* 📱スマホ対応 */
-  gap: 6px;
+/* ===============================
+   ギャラリー（PCで4枚まで表示）
+   =============================== */
+@media (min-width: 769px) {
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 横4枚に制限 */
+    gap: 16px; /* 画像の間隔（今の見た目を維持） */
+  }
 }
+
+/* スマホでは今のまま維持（既存設定が優先） */
+@media (max-width: 768px) {
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+  }
+}
+
 
 .gallery-item {
   position: relative;
@@ -703,6 +718,7 @@ function togglePastEvents() {
           
 </body>
 </html>
+
 
 
 
